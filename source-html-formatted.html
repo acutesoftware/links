@@ -1,0 +1,178 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;color:black;background:white;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;html&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;HEAD&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;title&gt;</span>Links - an example page using PHP, AJAX, CSS<span style="color: #008000; font-weight: bold">&lt;/title&gt;</span>
+
+<span style="color: #408080; font-style: italic">&lt;!-- Stylesheets for responsive design</span>
+<span style="color: #408080; font-style: italic">switches ok between CSS files using the lines below, the viewport line helps to fix fonts on mobiles</span>
+<span style="color: #408080; font-style: italic">--&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;meta</span> <span style="color: #7D9029">name=</span><span style="color: #BA2121">&quot;viewport&quot;</span> <span style="color: #7D9029">content=</span><span style="color: #BA2121">&quot;width=device-width, initial-scale=1.0&quot;</span> <span style="color: #008000; font-weight: bold">/&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;link</span> <span style="color: #7D9029">rel=</span><span style="color: #BA2121">&quot;stylesheet&quot;</span> <span style="color: #7D9029">type=</span><span style="color: #BA2121">&quot;text/css&quot;</span> <span style="color: #7D9029">href=</span><span style="color: #BA2121">&quot;links.css&quot;</span> <span style="color: #7D9029">media=</span><span style="color: #BA2121">&quot;screen&quot;</span> <span style="color: #008000; font-weight: bold">/&gt;</span> 
+<span style="color: #008000; font-weight: bold">&lt;link</span> <span style="color: #7D9029">rel=</span><span style="color: #BA2121">&quot;stylesheet&quot;</span> <span style="color: #7D9029">href=</span><span style="color: #BA2121">&quot;links-mob.css&quot;</span> <span style="color: #7D9029">media=</span><span style="color: #BA2121">&quot;only screen and (min-device-width : 320px) and (max-device-width : 480px)&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+
+<span style="color: #408080; font-style: italic">&lt;!-- Javascript functions --&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;script </span><span style="color: #7D9029">src=</span><span style="color: #BA2121">&quot;./links.js&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;/script&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;/HEAD&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;BODY&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;container&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+
+<span style="color: #408080; font-style: italic">&lt;!-- Header --&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;header&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;BR&gt;</span>Acute Software Links
+<span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;content&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+
+<span style="color: #408080; font-style: italic">&lt;!-- Main Content of HMTL page --&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;form</span> <span style="color: #7D9029">name=</span><span style="color: #BA2121">&quot;searchForm&quot;</span> <span style="color: #008000; font-weight: bold">&gt;</span> 
+<span style="color: #008000; font-weight: bold">&lt;input</span> <span style="color: #7D9029">name=</span><span style="color: #BA2121">&quot;txtSearch&quot;</span> <span style="color: #7D9029">type=</span><span style="color: #BA2121">&quot;text&quot;</span> <span style="color: #7D9029">onkeyup=</span><span style="color: #BA2121">&quot;LoadListOfLinks(this.value)&quot;</span> <span style="color: #7D9029">size=</span><span style="color: #BA2121">&quot;50&quot;</span> <span style="color: #008000; font-weight: bold">/&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/form&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;mainList&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+Enter a search string to find links
+<span style="color: #008000; font-weight: bold">&lt;BR&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
+
+
+<span style="color: #408080; font-style: italic">&lt;!-- Search Results go below into txtResults --&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;p&gt;&lt;span</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;txtResults&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;/span&gt;&lt;/p&gt;</span>
+
+
+<span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;BR&gt;&lt;center&gt;</span>
+This is an example page to demonstrate using PHP, AJAX, CSS and HTML together. Source code of the key files is below. (formatted by http://hilite.me/ )<span style="color: #008000; font-weight: bold">&lt;BR&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/center&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;code&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;h4&gt;</span>links.html<span style="color: #008000; font-weight: bold">&lt;/h4&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;a</span> <span style="color: #7D9029">href=</span><span style="color: #BA2121">&quot;source-html-formatted.inc&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>source-html-formatted.inc<span style="color: #008000; font-weight: bold">&lt;/a&gt;&lt;BR&gt;</span>
+<span style="color: #BC7A00">&lt;?php include &quot;source-html-formatted.inc&quot;; ?&gt;</span>
+
+
+<span style="color: #008000; font-weight: bold">&lt;h4&gt;</span>links.js<span style="color: #008000; font-weight: bold">&lt;/h4&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;a</span> <span style="color: #7D9029">href=</span><span style="color: #BA2121">&quot;source-js-formatted.inc&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>source-js-formatted.inc<span style="color: #008000; font-weight: bold">&lt;/a&gt;&lt;BR&gt;</span>
+<span style="color: #BC7A00">&lt;?php include &quot;source-js-formatted.inc&quot;; ?&gt;</span>
+
+
+<span style="color: #008000; font-weight: bold">&lt;h4&gt;</span>links.css<span style="color: #008000; font-weight: bold">&lt;/h4&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;a</span> <span style="color: #7D9029">href=</span><span style="color: #BA2121">&quot;source-css-formatted.inc&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>source-css-formatted.inc<span style="color: #008000; font-weight: bold">&lt;/a&gt;&lt;BR&gt;</span>
+<span style="color: #BC7A00">&lt;?php include &quot;source-css-formatted.inc&quot;; ?&gt;</span>
+
+
+<span style="color: #008000; font-weight: bold">&lt;h4&gt;</span>links.php<span style="color: #008000; font-weight: bold">&lt;/h4&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;a</span> <span style="color: #7D9029">href=</span><span style="color: #BA2121">&quot;source-php-formatted.inc&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>source-php-formatted.inc<span style="color: #008000; font-weight: bold">&lt;/a&gt;&lt;BR&gt;</span>
+<span style="color: #BC7A00">&lt;?php include &quot;source-php-formatted.inc&quot;; ?&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
+
+
+
+<span style="color: #008000; font-weight: bold">&lt;BR&gt;</span>
+
+
+<span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;footer&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+
+(C) Acute Software 2012 - <span style="color: #008000; font-weight: bold">&lt;a</span> <span style="color: #7D9029">href=</span><span style="color: #BA2121">http://www.acutesoftware.com.au</span><span style="color: #008000; font-weight: bold">&gt;</span>http://www.acutesoftware.com.au<span style="color: #008000; font-weight: bold">&lt;/a&gt;&lt;BR&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;/body&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/html&gt;</span>
+</pre></td></tr></table></div>

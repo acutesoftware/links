@@ -1,0 +1,196 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;color:black;background:white;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">&lt;?php</span>
+
+<span style="color: #408080; font-style: italic">//  $testing = True ; </span>
+ <span style="color: #19177C">$testing</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">False</span> ; 
+
+
+op( <span style="color: #BA2121">&quot;entering links.php &lt;BR&gt;&quot;</span>, <span style="color: #19177C">$testing</span>) ; 
+
+
+<span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">op</span>(<span style="color: #19177C">$txt</span>, <span style="color: #19177C">$lTesting</span>) {
+  <span style="color: #008000; font-weight: bold">if</span> ( <span style="color: #19177C">$lTesting</span> <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">True</span> ) 
+  {
+    <span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$txt</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot;&lt;BR&gt;&quot;</span> ; 
+  }
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #008000; font-weight: bold">True</span>;
+}
+
+
+<span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">f_parse_csv</span>(<span style="color: #19177C">$file</span>, <span style="color: #19177C">$longest</span>, <span style="color: #19177C">$delimiter</span>) {
+ <span style="color: #408080; font-style: italic">// from php.net - http://php.net/manual/en/function.str-getcsv.php</span>
+  <span style="color: #19177C">$mdarray</span> <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">array</span>();
+  <span style="color: #19177C">$file</span>    <span style="color: #666666">=</span> <span style="color: #008000">fopen</span>(<span style="color: #19177C">$file</span>, <span style="color: #BA2121">&quot;r&quot;</span>);
+  <span style="color: #008000; font-weight: bold">while</span> (<span style="color: #19177C">$line</span> <span style="color: #666666">=</span> <span style="color: #008000">fgetcsv</span>(<span style="color: #19177C">$file</span>, <span style="color: #19177C">$longest</span>, <span style="color: #19177C">$delimiter</span>)) {
+    <span style="color: #008000">array_push</span>(<span style="color: #19177C">$mdarray</span>, <span style="color: #19177C">$line</span>);
+    }
+  <span style="color: #008000">fclose</span>(<span style="color: #19177C">$file</span>);
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #19177C">$mdarray</span>;
+  }
+
+<span style="color: #008000; font-weight: bold">function</span> <span style="color: #0000FF">fixURL</span>(<span style="color: #19177C">$url</span>, <span style="color: #19177C">$includeHREF</span> ) {
+   <span style="color: #408080; font-style: italic">// written by Duncan Murray 10/8/2012 to get the proper text of a URL</span>
+      <span style="color: #19177C">$properURL</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;&quot;</span>; 
+	<span style="color: #008000; font-weight: bold">switch</span>( substr(<span style="color: #19177C">$url</span>, <span style="color: #666666">0</span>, <span style="color: #666666">4</span>) )
+      {
+	<span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">&quot;http&quot;</span><span style="color: #666666">:</span>
+      	<span style="color: #19177C">$properURL</span><span style="color: #666666">=</span> <span style="color: #19177C">$url</span>;
+	      <span style="color: #008000; font-weight: bold">break</span>;
+	<span style="color: #008000; font-weight: bold">case</span> <span style="color: #BA2121">&quot;www.&quot;</span><span style="color: #666666">:</span>
+        	<span style="color: #19177C">$properURL</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;http://&quot;</span><span style="color: #666666">.</span><span style="color: #19177C">$url</span>;
+		<span style="color: #008000; font-weight: bold">break</span>;
+	<span style="color: #008000; font-weight: bold">default</span><span style="color: #666666">:</span>
+      	<span style="color: #19177C">$properURL</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;http://www.&quot;</span><span style="color: #666666">.</span><span style="color: #19177C">$url</span>;
+		<span style="color: #008000; font-weight: bold">break</span>;
+	}
+	<span style="color: #008000; font-weight: bold">if</span> ( <span style="color: #19177C">$includeHREF</span> <span style="color: #666666">==</span> <span style="color: #008000; font-weight: bold">true</span> )
+	{
+		<span style="color: #19177C">$properURL</span> <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;&lt;a href=&quot;</span><span style="color: #666666">.</span><span style="color: #19177C">$properURL</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot;&gt;&quot;</span><span style="color: #666666">.</span><span style="color: #19177C">$properURL</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot;&lt;/a&gt;&quot;</span>;
+	}
+	<span style="color: #008000; font-weight: bold">return</span> <span style="color: #19177C">$properURL</span>; 
+}
+
+op(<span style="color: #BA2121">&quot;links.php - about to read text file to array&lt;BR&gt;&quot;</span>, <span style="color: #19177C">$testing</span>) ; 
+
+
+<span style="color: #408080; font-style: italic">// load the list of sites from a text file </span>
+<span style="color: #19177C">$file_handle</span> <span style="color: #666666">=</span> <span style="color: #008000">fopen</span>(<span style="color: #BA2121">&quot;links.txt&quot;</span>, <span style="color: #BA2121">&quot;rb&quot;</span>);
+
+<span style="color: #008000; font-weight: bold">while</span> (<span style="color: #666666">!</span><span style="color: #008000">feof</span>(<span style="color: #19177C">$file_handle</span>) ) {
+	<span style="color: #19177C">$a</span>[] <span style="color: #666666">=</span> <span style="color: #008000">fgets</span>(<span style="color: #19177C">$file_handle</span>);
+}
+
+<span style="color: #008000">fclose</span>(<span style="color: #19177C">$file_handle</span>);
+
+
+<span style="color: #408080; font-style: italic">//get the q parameter from URL</span>
+<span style="color: #19177C">$q</span><span style="color: #666666">=</span><span style="color: #19177C">$_GET</span>[<span style="color: #BA2121">&quot;q&quot;</span>];
+
+<span style="color: #19177C">$totRecs</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
+
+op(<span style="color: #BA2121">&quot;links.php - searching for &#39;&quot;</span><span style="color: #666666">.</span><span style="color: #19177C">$q</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot;&#39;&quot;</span>, <span style="color: #19177C">$testing</span> ); 
+
+<span style="color: #408080; font-style: italic">//lookup all urls from array </span>
+<span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">strlen</span>(<span style="color: #19177C">$q</span>) <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>)
+  {
+  <span style="color: #19177C">$hint</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;&quot;</span>;
+  <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #19177C">$i</span><span style="color: #666666">=0</span>; <span style="color: #19177C">$i</span><span style="color: #666666">&lt;</span><span style="color: #008000">count</span>(<span style="color: #19177C">$a</span>); <span style="color: #19177C">$i</span><span style="color: #666666">++</span>)
+    {
+    <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">strpos</span>(<span style="color: #19177C">$a</span>[<span style="color: #19177C">$i</span>],<span style="color: #19177C">$q</span>) <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span> )
+      {
+		<span style="color: #19177C">$hint</span> <span style="color: #666666">=</span> <span style="color: #19177C">$hint</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot;&lt;BR&gt;&quot;</span><span style="color: #666666">.</span>fixURL( <span style="color: #19177C">$a</span>[<span style="color: #19177C">$i</span>] , <span style="color: #008000; font-weight: bold">True</span> ) ;
+		<span style="color: #19177C">$totRecs</span> <span style="color: #666666">=</span> <span style="color: #19177C">$totRecs</span> <span style="color: #666666">+</span> <span style="color: #666666">1</span>; 
+      }
+    }
+  }
+
+
+<span style="color: #008000; font-weight: bold">if</span> (<span style="color: #19177C">$hint</span> <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;&quot;</span>)
+  {
+  <span style="color: #19177C">$response</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;no matches on &quot;</span><span style="color: #666666">.</span><span style="color: #19177C">$q</span>;
+  }
+<span style="color: #008000; font-weight: bold">else</span>
+  {
+	<span style="color: #19177C">$hint</span> <span style="color: #666666">=</span> <span style="color: #19177C">$totRecs</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot; results found containing &quot;</span><span style="color: #666666">.</span><span style="color: #19177C">$q</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot;&lt;BR&gt;&quot;</span><span style="color: #666666">.</span><span style="color: #19177C">$hint</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot;&lt;BR&gt;&quot;</span> ;
+	<span style="color: #19177C">$response</span><span style="color: #666666">=</span><span style="color: #19177C">$hint</span>;
+  }
+
+<span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$response</span>;
+<span style="color: #BC7A00">?&gt;</span>
+</pre></td></tr></table></div>

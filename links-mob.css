@@ -1,0 +1,54 @@
+
+/*'----------------------------------
+links-mob.css - demo CSS for Mobiles
+Key differences are: smaller margins and padding in Content, 
+different background color (to show the correct CSS is loading)
+and a smaller font heading.
+-------------------------------------*/
+
+#body { font-family: tahoma, sans-serif; margin: 0px auto; padding: 0px auto;
+	  font-size: 12px; color: #111; background-color: grey;
+
+}
+
+#container  {  background-color: grey; margin: 0px auto; padding: 0px auto;    text-align:left;
+border-radius: 6px; 
+-moz-border-radius:6px; 
+-webkit-border-radius: 6px; 
+border: 1px solid grey;
+}
+
+#header {   font-family: Goudy Old Style,  serif;    font-size: 120%;   color: white;
+		text-align: center;   height: 60px; background-color: grey; 
+}
+
+#content {   padding: 5px 5px 5px 5px ;   margin: 1px 2px 1px 2px;   background-color: #EDFFDD;
+border-radius: 6px; 
+-moz-border-radius:6px; 
+-webkit-border-radius: 6px; 
+border: 1px solid #fff;
+font-size: 12px; 
+font-family: tahoma, sans-serif; 
+}
+
+
+
+
+#commentary { 	align: left;  margin: 0px 1px 1px 1px; padding: 1px 1px 1px 1px ; 
+	   background-color: #F5F5F0; border: 2px; 
+		font-family: courier; font-size: 9px; 
+
+}
+
+#commentary h4 { -webkit-margin-before: 1.0em; -webkit-margin-after: 1.0em; background-color: black; color: yellow; }
+
+
+#code { background: #EDFFDD; overflow:auto;width:auto;color:black;background:#F5F5F0;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em; }
+
+#mainList  {    border: 0px solid #ccd;  width: 100%; 
+}
+
+
+#footer {    font-size: smaller;    color: grey; background-color: white; text-align:center;
+}
+

@@ -1,0 +1,46 @@
+
+
+/*'---------------------------
+links.css - for normal screens
+-----------------------------*/
+
+#body { font-family: tahoma, sans-serif; margin: 0px auto; padding: 0px auto;
+	  font-size: 12px; color: #111; background-color: grey;
+}
+
+#container  {  background-color: grey; margin: 0px auto; padding: 0px auto; text-align:left;
+border-radius: 6px; 
+-moz-border-radius:6px; 
+-webkit-border-radius: 6px; 
+border: 14px solid grey;
+}
+
+#header {   font-family: Goudy Old Style,  serif;    font-size: 200%;   color: white;
+		text-align: center;  background-color: grey; 
+}
+
+#content {   padding: 15px 15px 15px 15px ;   margin: 10px 20px 10px 20px;   background-color: white;
+border-radius: 6px; 
+-moz-border-radius:6px; 
+-webkit-border-radius: 6px; 
+border: 1px solid #fff;
+font-size: 12px; 
+font-family: tahoma, sans-serif; 
+}
+
+#commentary { 	align: left;  margin: 0px 25px 25px 25px; padding: 5px 25px 25px 25px ; 
+	      border: 2px; font-size: 14px; background-color: white; 
+}
+
+#commentary h4 { -webkit-margin-before: 1.0em; -webkit-margin-after: 1.0em; background-color: black; color: yellow; }
+
+
+#code { background: #EDFFDD; overflow:auto;width:auto;color:black;background:#F5F5F0;border:solid gray;border-width:.1em .1em .1em .1em;padding:.2em .6em; }
+
+#mainList  {    border: 0px solid #ccd;  width: 400px; 
+}
+
+
+#footer {    font-size: smaller;    color: grey; background-color: white; text-align:center;
+}
+

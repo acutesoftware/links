@@ -1,0 +1,66 @@
+<!-- HTML generated using hilite.me --><div style="background: #f8f8f8; overflow:auto;width:auto;color:black;background:white;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%"> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre></td><td><pre style="margin: 0; line-height: 125%"><span style="color: #008000; font-weight: bold">function</span> LoadListOfLinks(str)
+{
+<span style="color: #408080; font-style: italic">// This returns a list of links.</span>
+
+<span style="color: #008000; font-weight: bold">if</span> (str.length<span style="color: #666666">==0</span>)
+  { 
+  <span style="color: #008000">document</span>.getElementById(<span style="color: #BA2121">&quot;txtResults&quot;</span>).innerHTML<span style="color: #666666">=</span><span style="color: #BA2121">&quot;&quot;</span>;
+  <span style="color: #008000; font-weight: bold">return</span>;
+  }
+
+<span style="color: #008000">document</span>.getElementById(<span style="color: #BA2121">&quot;txtResults&quot;</span>).innerHTML<span style="color: #666666">=</span><span style="color: #BA2121">&quot; Please wait... Searching for URLs containing &#39;&quot;</span> <span style="color: #666666">+</span> str <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;&#39;&quot;</span> ; 
+
+<span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">window</span>.XMLHttpRequest)
+  {<span style="color: #408080; font-style: italic">// code for IE7+, Firefox, Chrome, Opera, Safari</span>
+  xmlhttp<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">new</span> XMLHttpRequest();
+  }
+<span style="color: #008000; font-weight: bold">else</span>
+  {<span style="color: #408080; font-style: italic">// code for IE6, IE5</span>
+  xmlhttp<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">new</span> ActiveXObject(<span style="color: #BA2121">&quot;Microsoft.XMLHTTP&quot;</span>);
+  }
+xmlhttp.onreadystatechange<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">function</span>()
+  {
+  <span style="color: #008000; font-weight: bold">if</span> (xmlhttp.readyState<span style="color: #666666">==4</span> <span style="color: #666666">&amp;&amp;</span> xmlhttp.status<span style="color: #666666">==200</span>)
+    {
+    <span style="color: #008000">document</span>.getElementById(<span style="color: #BA2121">&quot;txtResults&quot;</span>).innerHTML<span style="color: #666666">=</span>xmlhttp.responseText;
+    }
+  }
+xmlhttp.open(<span style="color: #BA2121">&quot;GET&quot;</span>,<span style="color: #BA2121">&quot;links.php?q=&quot;</span><span style="color: #666666">+</span>str , <span style="color: #008000; font-weight: bold">true</span>);
+xmlhttp.send();
+<span style="color: #008000">document</span>.getElementById(<span style="color: #BA2121">&quot;mainList&quot;</span>).innerHTML<span style="color: #666666">=</span><span style="color: #BA2121">&quot; List of URLs containing &#39;&quot;</span> <span style="color: #666666">+</span> str <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;&#39;&quot;</span> ; 
+<span style="color: #008000">document</span>.getElementById(<span style="color: #BA2121">&quot;mainList&quot;</span>).innerHTML<span style="color: #666666">=</span><span style="color: #BA2121">&quot; &quot;</span> ; 
+<span style="color: #008000; font-weight: bold">return</span> ;
+}
+</pre></td></tr></table></div>

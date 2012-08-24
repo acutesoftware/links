@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html><HEAD><title>Links - an example page using PHP, AJAX, CSS</title>
+
+<!-- Stylesheets for responsive design -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" type="text/css" href="links.css" media="screen" /> 
+<link rel="stylesheet" href="links-mob.css" media="only screen 
+          and (min-device-width : 320px) and (max-device-width : 480px)">
+
+<!-- Javascript functions -->
+
+<script src="./links.js"></script>
+
+</HEAD>
+<BODY>
+
+<div id="container">
+
+<!-- Header -->
+
+<div id="header">
+Links - an example page using PHP, AJAX, CSS and HTML</div>
+
+<div id="content">
+
+<!-- Main Content of HMTL page -->
+
+
+
+<div id="mainList">
+Enter a search string to find links
+<BR>
+</div>
+
+<form name="searchForm" > 
+<input name="txtSearch" type="text" onkeyup="LoadListOfLinks(this.value)" size="25" />
+</form>
+
+
+<!-- Search Results go below into txtResults -->
+
+<p><span id="txtResults"></span></p>
+
+
+</div>
+<BR><BR>
+
+<!-- SAMPLE SOURCE CODE  -->
+
+<div id="commentary">
+
+
+<H2>Code Commentary</h2>
+This is version 0.1 of a simple application to demonstrate how to use various elements in a web application. It shows how to:<BR>
+<LI>use Ajax in a text prompt to avoid needing a submit button on a form
+<LI>use PHP to access source files (txt) on the server
+<LI>use CSS to have a responsive design so it can be viewed on a desktop or smartphone
+
+<BR>
+
+
+
+<h4>links.html</h4>
+
+The code below is from the main <a href="source-html-formatted.html">HTML page</a>. A simple form holds the area for the user to enter a search string 'txtSearch', and when a key is pressed here it calls the javascript function 'LoadListOfLinks' each time. The search results when returned will be placed into the area 'txtResults'. <BR>
+
+<div id="code">
+
+<pre style="margin: 0; line-height: 120%">
+
+<span style="color: #008000; font-weight: bold">&lt;form</span> <span style="color: #7D9029">name=</span><span style="color: #BA2121">&quot;searchForm&quot;</span> <span style="color: #008000; font-weight: bold">&gt;</span> 
+<span style="color: #008000; font-weight: bold">&lt;input</span> <span style="color: #7D9029">name=</span><span style="color: #BA2121">&quot;txtSearch&quot;</span> <span style="color: #7D9029">type=</span><span style="color: #BA2121">&quot;text&quot;</span> <span style="color: #7D9029">onkeyup=</span><span style="color: #BA2121">&quot;LoadListOfLinks(this.value)&quot;</span> <span style="color: #7D9029">size=</span><span style="color: #BA2121">&quot;50&quot;</span> <span style="color: #008000; font-weight: bold">/&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;/form&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;div</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;mainList&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+Enter a search string to find links
+<span style="color: #008000; font-weight: bold">&lt;/div&gt;</span>
+
+
+<span style="color: #408080; font-style: italic">&lt;!-- Search Results go below into txtResults --&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;p&gt;&lt;span</span> <span style="color: #7D9029">id=</span><span style="color: #BA2121">&quot;txtResults&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;/span&gt;&lt;/p&gt;</span>
+
+</pre>
+</div>
+
+
+<h4>links.js</h4>
+
+The code snippet below if from the javascript function <a href="source-js-formatted.html">'LoadListOfLinks'</a>. 
+It sends the search string to the PHP function 'links.php' and once this completes ( readyState '4')  with success (xmlhttp.status '200'), it displays the results into the area defined as 'txtResults' <BR>
+
+<div id="code">
+<pre style="margin: 0; line-height: 120%">
+
+<span style="color: #008000">document</span>.getElementById(<span style="color: #BA2121">&quot;txtResults&quot;</span>).innerHTML<span style="color: #666666">=</span><span style="color: #BA2121">&quot; Please wait... Searching for URLs containing &#39;&quot;</span> <span style="color: #666666">+</span> str <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;&#39;&quot;</span> ; 
+
+<span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">window</span>.XMLHttpRequest)
+  {<span style="color: #408080; font-style: italic">// code for IE7+, Firefox, Chrome, Opera, Safari</span>
+  xmlhttp<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">new</span> XMLHttpRequest();
+  }
+<span style="color: #008000; font-weight: bold">else</span>
+  {<span style="color: #408080; font-style: italic">// code for IE6, IE5</span>
+  xmlhttp<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">new</span> ActiveXObject(<span style="color: #BA2121">&quot;Microsoft.XMLHTTP&quot;</span>);
+  }
+xmlhttp.onreadystatechange<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">function</span>()
+  {
+  <span style="color: #008000; font-weight: bold">if</span> (xmlhttp.readyState<span style="color: #666666">==4</span> <span style="color: #666666">&amp;&amp;</span> xmlhttp.status<span style="color: #666666">==200</span>)
+    {
+    <span style="color: #008000">document</span>.getElementById(<span style="color: #BA2121">&quot;txtResults&quot;</span>).innerHTML<span style="color: #666666">=</span>xmlhttp.responseText;
+    }
+  }
+
+xmlhttp.open(<span style="color: #BA2121">&quot;GET&quot;</span>,<span style="color: #BA2121">&quot;links.php?q=&quot;</span><span style="color: #666666">+</span>str , <span style="color: #008000; font-weight: bold">true</span>);
+xmlhttp.send();
+<span style="color: #008000">document</span>.getElementById(<span style="color: #BA2121">&quot;mainList&quot;</span>).innerHTML<span style="color: #666666">=</span><span style="color: #BA2121">&quot; List of URLs containing &#39;&quot;</span> <span style="color: #666666">+</span> str <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;&#39;&quot;</span> ; 
+}
+</pre>
+</div>
+
+<h4>links.php</h4>
+The complete PHP code is <a href="source-php-formatted.html">here</a>, but the snippet below shows the section which reads a list of URL's from a text file into an array and sends that back as a response.<BR>
+
+<div id="code">
+<pre style="margin: 0; line-height: 120%">
+
+<span style="color: #408080; font-style: italic">// load the list of sites from a text file </span>
+<span style="color: #19177C">$file_handle</span> <span style="color: #666666">=</span> <span style="color: #008000">fopen</span>(<span style="color: #BA2121">&quot;links.txt&quot;</span>, <span style="color: #BA2121">&quot;rb&quot;</span>);
+
+<span style="color: #008000; font-weight: bold">while</span> (<span style="color: #666666">!</span><span style="color: #008000">feof</span>(<span style="color: #19177C">$file_handle</span>) ) {
+	<span style="color: #19177C">$a</span>[] <span style="color: #666666">=</span> <span style="color: #008000">fgets</span>(<span style="color: #19177C">$file_handle</span>);
+}
+
+<span style="color: #008000">fclose</span>(<span style="color: #19177C">$file_handle</span>);
+
+
+<span style="color: #408080; font-style: italic">//get the q parameter from URL</span>
+<span style="color: #19177C">$q</span><span style="color: #666666">=</span><span style="color: #19177C">$_GET</span>[<span style="color: #BA2121">&quot;q&quot;</span>];
+
+<span style="color: #19177C">$totRecs</span> <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
+
+op(<span style="color: #BA2121">&quot;links.php - searching for &#39;&quot;</span><span style="color: #666666">.</span><span style="color: #19177C">$q</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot;&#39;&quot;</span>, <span style="color: #19177C">$testing</span> ); 
+
+<span style="color: #408080; font-style: italic">//lookup all urls from array </span>
+<span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">strlen</span>(<span style="color: #19177C">$q</span>) <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span>)
+  {
+  <span style="color: #19177C">$hint</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;&quot;</span>;
+  <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #19177C">$i</span><span style="color: #666666">=0</span>; <span style="color: #19177C">$i</span><span style="color: #666666">&lt;</span><span style="color: #008000">count</span>(<span style="color: #19177C">$a</span>); <span style="color: #19177C">$i</span><span style="color: #666666">++</span>)
+    {
+    <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #008000">strpos</span>(<span style="color: #19177C">$a</span>[<span style="color: #19177C">$i</span>],<span style="color: #19177C">$q</span>) <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span> )
+      {
+		<span style="color: #19177C">$hint</span> <span style="color: #666666">=</span> <span style="color: #19177C">$hint</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot;&lt;BR&gt;&quot;</span><span style="color: #666666">.</span>fixURL( <span style="color: #19177C">$a</span>[<span style="color: #19177C">$i</span>] , <span style="color: #008000; font-weight: bold">True</span> ) ;
+		<span style="color: #19177C">$totRecs</span> <span style="color: #666666">=</span> <span style="color: #19177C">$totRecs</span> <span style="color: #666666">+</span> <span style="color: #666666">1</span>; 
+      }
+    }
+  }
+
+
+<span style="color: #008000; font-weight: bold">if</span> (<span style="color: #19177C">$hint</span> <span style="color: #666666">==</span> <span style="color: #BA2121">&quot;&quot;</span>)
+  {
+  <span style="color: #19177C">$response</span><span style="color: #666666">=</span><span style="color: #BA2121">&quot;no matches on &quot;</span><span style="color: #666666">.</span><span style="color: #19177C">$q</span>;
+  }
+<span style="color: #008000; font-weight: bold">else</span>
+  {
+	<span style="color: #19177C">$hint</span> <span style="color: #666666">=</span> <span style="color: #19177C">$totRecs</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot; results found containing &quot;</span><span style="color: #666666">.</span><span style="color: #19177C">$q</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot;&lt;BR&gt;&quot;</span><span style="color: #666666">.</span><span style="color: #19177C">$hint</span><span style="color: #666666">.</span><span style="color: #BA2121">&quot;&lt;BR&gt;&quot;</span> ;
+	<span style="color: #19177C">$response</span><span style="color: #666666">=</span><span style="color: #19177C">$hint</span>;
+  }
+
+<span style="color: #008000; font-weight: bold">echo</span> <span style="color: #19177C">$response</span>;
+<span style="color: #BC7A00">?&gt;</span>
+</pre>
+
+</div>
+
+
+
+<h4>links.css</h4>
+The basic display of this application is handled by the cascading style sheet 
+<a href="source-css-formatted.html">links.css</a>. When viewed on a normal PC the following source snippets show how the display is shown<BR>
+
+<div id="code">
+<pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">/*&#39;---------------------------</span>
+<span style="color: #408080; font-style: italic">links.css - for normal screens</span>
+<span style="color: #408080; font-style: italic">-----------------------------*/</span>
+
+<span style="color: #0000FF">#body</span> { <span style="color: #008000; font-weight: bold">font-family</span><span style="color: #666666">:</span> tahoma<span style="color: #666666">,</span> <span style="color: #008000; font-weight: bold">sans-serif</span>; <span style="color: #008000; font-weight: bold">margin</span><span style="color: #666666">:</span> <span style="color: #666666">0px</span> <span style="color: #008000; font-weight: bold">auto</span>; <span style="color: #008000; font-weight: bold">padding</span><span style="color: #666666">:</span> <span style="color: #666666">0px</span> <span style="color: #008000; font-weight: bold">auto</span>;
+	  <span style="color: #008000; font-weight: bold">font-size</span><span style="color: #666666">:</span> <span style="color: #666666">12px</span>; <span style="color: #008000; font-weight: bold">color</span><span style="color: #666666">:</span> <span style="color: #666666">#111</span>; <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> grey;
+}
+
+<span style="color: #0000FF">#container</span>  {  <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> grey; <span style="color: #008000; font-weight: bold">margin</span><span style="color: #666666">:</span> <span style="color: #666666">0px</span> <span style="color: #008000; font-weight: bold">auto</span>; <span style="color: #008000; font-weight: bold">padding</span><span style="color: #666666">:</span> <span style="color: #666666">0px</span> <span style="color: #008000; font-weight: bold">auto</span>; <span style="color: #008000; font-weight: bold">text-align</span><span style="color: #666666">:</span><span style="color: #008000; font-weight: bold">left</span>;
+<span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:</span> <span style="color: #666666">6px</span>; 
+<span style="color: #666666">-</span>moz<span style="color: #666666">-</span><span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:6px</span>; 
+<span style="color: #666666">-</span>webkit<span style="color: #666666">-</span><span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:</span> <span style="color: #666666">6px</span>; 
+<span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">:</span> <span style="color: #666666">14px</span> <span style="color: #008000; font-weight: bold">solid</span> grey;
+}
+
+<span style="color: #0000FF">#header</span> {   <span style="color: #008000; font-weight: bold">font-family</span><span style="color: #666666">:</span> Goudy Old Style<span style="color: #666666">,</span>  <span style="color: #008000; font-weight: bold">serif</span>;    <span style="color: #008000; font-weight: bold">font-size</span><span style="color: #666666">:</span> <span style="color: #666666">250%</span>;   <span style="color: #008000; font-weight: bold">color</span><span style="color: #666666">:</span> <span style="color: #008000">white</span>;
+		<span style="color: #008000; font-weight: bold">text-align</span><span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">center</span>;   <span style="color: #008000; font-weight: bold">height</span><span style="color: #666666">:</span> <span style="color: #666666">100px</span>; <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> grey; 
+}
+
+<span style="color: #0000FF">#content</span> {   <span style="color: #008000; font-weight: bold">padding</span><span style="color: #666666">:</span> <span style="color: #666666">15px</span> <span style="color: #666666">15px</span> <span style="color: #666666">15px</span> <span style="color: #666666">15px</span> ;   <span style="color: #008000; font-weight: bold">margin</span><span style="color: #666666">:</span> <span style="color: #666666">10px</span> <span style="color: #666666">20px</span> <span style="color: #666666">10px</span> <span style="color: #666666">20px</span>;   <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> <span style="color: #008000">white</span>;
+<span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:</span> <span style="color: #666666">6px</span>; 
+<span style="color: #666666">-</span>moz<span style="color: #666666">-</span><span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:6px</span>; 
+<span style="color: #666666">-</span>webkit<span style="color: #666666">-</span><span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:</span> <span style="color: #666666">6px</span>; 
+<span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">:</span> <span style="color: #666666">1px</span> <span style="color: #008000; font-weight: bold">solid</span> <span style="color: #666666">#fff</span>;
+<span style="color: #008000; font-weight: bold">font-size</span><span style="color: #666666">:</span> <span style="color: #666666">12px</span>; 
+<span style="color: #008000; font-weight: bold">font-family</span><span style="color: #666666">:</span> tahoma<span style="color: #666666">,</span> <span style="color: #008000; font-weight: bold">sans-serif</span>; 
+}
+
+<span style="color: #0000FF">#code</span> { 	align<span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">left</span>;  <span style="color: #008000; font-weight: bold">margin</span><span style="color: #666666">:</span> <span style="color: #666666">0px</span> <span style="color: #666666">25px</span> <span style="color: #666666">25px</span> <span style="color: #666666">25px</span>; <span style="color: #008000; font-weight: bold">padding</span><span style="color: #666666">:</span> <span style="color: #666666">5px</span> <span style="color: #666666">25px</span> <span style="color: #666666">25px</span> <span style="color: #666666">25px</span> ; 
+	      <span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">:</span> <span style="color: #666666">2px</span>; <span style="color: #008000; font-weight: bold">font-size</span><span style="color: #666666">:</span> <span style="color: #666666">14px</span>; <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> <span style="color: #666666">#F5F5F0</span>; 
+}
+
+<span style="color: #0000FF">#code</span> <span style="color: #008000; font-weight: bold">h4</span> { <span style="color: #666666">-</span>webkit<span style="color: #666666">-</span><span style="color: #008000; font-weight: bold">margin</span><span style="color: #666666">-</span>before<span style="color: #666666">:</span> <span style="color: #666666">1.0em</span>; <span style="color: #666666">-</span>webkit<span style="color: #666666">-</span><span style="color: #008000; font-weight: bold">margin</span><span style="color: #666666">-</span>after<span style="color: #666666">:</span> <span style="color: #666666">1.0em</span>; <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> <span style="color: #008000">black</span>; <span style="color: #008000; font-weight: bold">color</span><span style="color: #666666">:</span> <span style="color: #008000">yellow</span>; }
+
+<span style="color: #0000FF">#mainList</span>  {    <span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">:</span> <span style="color: #666666">0px</span> <span style="color: #008000; font-weight: bold">solid</span> <span style="color: #666666">#ccd</span>;  <span style="color: #008000; font-weight: bold">width</span><span style="color: #666666">:</span> <span style="color: #666666">400px</span>; 
+}
+
+
+<span style="color: #0000FF">#footer</span> {    <span style="color: #008000; font-weight: bold">font-size</span><span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">smaller</span>;    <span style="color: #008000; font-weight: bold">color</span><span style="color: #666666">:</span> grey; <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> <span style="color: #008000">white</span>; <span style="color: #008000; font-weight: bold">text-align</span><span style="color: #666666">:</span><span style="color: #008000; font-weight: bold">center</span>;
+}
+</pre>
+</div>
+
+<BR>
+
+Looking at the code in the header of the HTML file, there are 3 lines that will switch to an alternate CSS file as shown below<BR><BR>
+
+<div id="code">
+<pre style="margin: 0; line-height: 125%"><span style="color: #BC7A00">&lt;!DOCTYPE html&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;html&gt;&lt;HEAD&gt;&lt;title&gt;</span>Links - an example page using PHP, AJAX, CSS<span style="color: #008000; font-weight: bold">&lt;/title&gt;</span>
+
+<span style="color: #408080; font-style: italic">&lt;!-- Stylesheets for responsive design --&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;meta</span> <span style="color: #7D9029">name=</span><span style="color: #BA2121">&quot;viewport&quot;</span> <span style="color: #7D9029">content=</span><span style="color: #BA2121">&quot;width=device-width, initial-scale=1.0&quot;</span> <span style="color: #008000; font-weight: bold">/&gt;</span>
+<span style="color: #008000; font-weight: bold">&lt;link</span> <span style="color: #7D9029">rel=</span><span style="color: #BA2121">&quot;stylesheet&quot;</span> <span style="color: #7D9029">type=</span><span style="color: #BA2121">&quot;text/css&quot;</span> <span style="color: #7D9029">href=</span><span style="color: #BA2121">&quot;links.css&quot;</span> <span style="color: #7D9029">media=</span><span style="color: #BA2121">&quot;screen&quot;</span> <span style="color: #008000; font-weight: bold">/&gt;</span> 
+<span style="color: #008000; font-weight: bold">&lt;link</span> <span style="color: #7D9029">rel=</span><span style="color: #BA2121">&quot;stylesheet&quot;</span> <span style="color: #7D9029">href=</span><span style="color: #BA2121">&quot;links-mob.css&quot;</span> <span style="color: #7D9029">media=</span><span style="color: #BA2121">&quot;only screen </span>
+<span style="color: #BA2121">          and (min-device-width : 320px) and (max-device-width : 480px)&quot;</span><span style="color: #008000; font-weight: bold">&gt;</span>
+
+<span style="color: #408080; font-style: italic">&lt;!-- Javascript functions --&gt;</span>
+
+<span style="color: #008000; font-weight: bold">&lt;script </span><span style="color: #7D9029">src=</span><span style="color: #BA2121">&quot;./links.js&quot;</span><span style="color: #008000; font-weight: bold">&gt;&lt;/script&gt;</span>
+</pre></div>
+
+<BR>
+
+
+When the user is running this page on a smartphone, the alternate CSS file will be shown, which differs as follows:<BR>
+<BR>
+
+
+<div id="code">
+
+<pre style="margin: 0; line-height: 125%"><span style="color: #408080; font-style: italic">/*&#39;----------------------------------</span>
+<span style="color: #408080; font-style: italic">links-mob.css - demo CSS for Mobiles</span>
+<span style="color: #408080; font-style: italic">Key differences are: smaller margins and padding in Content, </span>
+<span style="color: #408080; font-style: italic">different background color (to show the correct CSS is loading)</span>
+<span style="color: #408080; font-style: italic">and a smaller font heading.</span>
+<span style="color: #408080; font-style: italic">-------------------------------------*/</span>
+
+<span style="color: #0000FF">#body</span> { <span style="color: #008000; font-weight: bold">font-family</span><span style="color: #666666">:</span> tahoma<span style="color: #666666">,</span> <span style="color: #008000; font-weight: bold">sans-serif</span>; <span style="color: #008000; font-weight: bold">margin</span><span style="color: #666666">:</span> <span style="color: #666666">0px</span> <span style="color: #008000; font-weight: bold">auto</span>; <span style="color: #008000; font-weight: bold">padding</span><span style="color: #666666">:</span> <span style="color: #666666">0px</span> <span style="color: #008000; font-weight: bold">auto</span>;
+	  <span style="color: #008000; font-weight: bold">font-size</span><span style="color: #666666">:</span> <span style="color: #666666">12px</span>; <span style="color: #008000; font-weight: bold">color</span><span style="color: #666666">:</span> <span style="color: #666666">#111</span>; <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> grey;
+
+}
+
+<span style="color: #0000FF">#container</span>  {  <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> grey; <span style="color: #008000; font-weight: bold">margin</span><span style="color: #666666">:</span> <span style="color: #666666">0px</span> <span style="color: #008000; font-weight: bold">auto</span>; <span style="color: #008000; font-weight: bold">padding</span><span style="color: #666666">:</span> <span style="color: #666666">0px</span> <span style="color: #008000; font-weight: bold">auto</span>;    <span style="color: #008000; font-weight: bold">text-align</span><span style="color: #666666">:</span><span style="color: #008000; font-weight: bold">left</span>;
+<span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:</span> <span style="color: #666666">6px</span>; 
+<span style="color: #666666">-</span>moz<span style="color: #666666">-</span><span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:6px</span>; 
+<span style="color: #666666">-</span>webkit<span style="color: #666666">-</span><span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:</span> <span style="color: #666666">6px</span>; 
+<span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">:</span> <span style="color: #666666">14px</span> <span style="color: #008000; font-weight: bold">solid</span> grey;
+}
+
+<span style="color: #0000FF">#header</span> {   <span style="color: #008000; font-weight: bold">font-family</span><span style="color: #666666">:</span> Goudy Old Style<span style="color: #666666">,</span>  <span style="color: #008000; font-weight: bold">serif</span>;    <span style="color: #008000; font-weight: bold">font-size</span><span style="color: #666666">:</span> <span style="color: #666666">150%</span>;   <span style="color: #008000; font-weight: bold">color</span><span style="color: #666666">:</span> <span style="color: #008000">white</span>;
+		<span style="color: #008000; font-weight: bold">text-align</span><span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">center</span>;   <span style="color: #008000; font-weight: bold">height</span><span style="color: #666666">:</span> <span style="color: #666666">70px</span>; <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> grey; 
+}
+
+<span style="color: #0000FF">#content</span> {   <span style="color: #008000; font-weight: bold">padding</span><span style="color: #666666">:</span> <span style="color: #666666">5px</span> <span style="color: #666666">5px</span> <span style="color: #666666">5px</span> <span style="color: #666666">5px</span> ;   <span style="color: #008000; font-weight: bold">margin</span><span style="color: #666666">:</span> <span style="color: #666666">1px</span> <span style="color: #666666">2px</span> <span style="color: #666666">1px</span> <span style="color: #666666">2px</span>;   <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> <span style="color: #666666">#EDFFDD</span>;
+<span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:</span> <span style="color: #666666">6px</span>; 
+<span style="color: #666666">-</span>moz<span style="color: #666666">-</span><span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:6px</span>; 
+<span style="color: #666666">-</span>webkit<span style="color: #666666">-</span><span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">-</span>radius<span style="color: #666666">:</span> <span style="color: #666666">6px</span>; 
+<span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">:</span> <span style="color: #666666">1px</span> <span style="color: #008000; font-weight: bold">solid</span> <span style="color: #666666">#fff</span>;
+<span style="color: #008000; font-weight: bold">font-size</span><span style="color: #666666">:</span> <span style="color: #666666">12px</span>; 
+<span style="color: #008000; font-weight: bold">font-family</span><span style="color: #666666">:</span> tahoma<span style="color: #666666">,</span> <span style="color: #008000; font-weight: bold">sans-serif</span>; 
+}
+
+
+<span style="color: #0000FF">#code</span> { 	align<span style="color: #666666">:</span> <span style="color: #008000; font-weight: bold">left</span>;  <span style="color: #008000; font-weight: bold">margin</span><span style="color: #666666">:</span> <span style="color: #666666">0px</span> <span style="color: #666666">5px</span> <span style="color: #666666">5px</span> <span style="color: #666666">5px</span>; <span style="color: #008000; font-weight: bold">padding</span><span style="color: #666666">:</span> <span style="color: #666666">5px</span> <span style="color: #666666">5px</span> <span style="color: #666666">5px</span> <span style="color: #666666">5px</span> ; 
+	   <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> <span style="color: #666666">#F5F5F0</span>; <span style="color: #008000; font-weight: bold">border</span><span style="color: #666666">:</span> <span style="color: #666666">2px</span>; 
+		<span style="color: #008000; font-weight: bold">font-family</span><span style="color: #666666">:</span> courier; <span style="color: #008000; font-weight: bold">font-size</span><span style="color: #666666">:</span> <span style="color: #666666">9px</span>; 
+}
+
+<span style="color: #0000FF">#code</span> <span style="color: #008000; font-weight: bold">h4</span> { <span style="color: #666666">-</span>webkit<span style="color: #666666">-</span><span style="color: #008000; font-weight: bold">margin</span><span style="color: #666666">-</span>before<span style="color: #666666">:</span> <span style="color: #666666">1.0em</span>; <span style="color: #666666">-</span>webkit<span style="color: #666666">-</span><span style="color: #008000; font-weight: bold">margin</span><span style="color: #666666">-</span>after<span style="color: #666666">:</span> <span style="color: #666666">1.0em</span>; <span style="color: #008000; font-weight: bold">background-color</span><span style="color: #666666">:</span> <span style="color: #008000">black</span>; <span style="color: #008000; font-weight: bold">color</span><span style="color: #666666">:</span> <span style="color: #008000">yellow</span>; }
+
+
+
+</pre>
+
+</div>
+
+<BR>
+
+
+<BR>
+<img src="screenshot_mobile.jpg" padding=20% align=right valign=top alt="Screenshot of Links running on Samsung Galaxy"></img>
+
+
+<H3>Summary</H3>
+
+
+
+The above sample code shows how you can integrate the key elements together without having to embed PHP code or Javascript inside HTML files, which certainly works, but quickly gets messy.<BR><BR>
+
+The screenshot to the right shows the application running on a Samgsung Galaxt SII smartphone (the background color in the links-mob.css was changed to pale green to show the same app running different CSS files based on the media width).<BR><BR>
+
+Future articles planned will look at managing databases and tips for managing code, without resorting to a complete framework. <BR><BR>
+If you have any questions or comments, please email <a href=mailto:djmurray@acutesoftware.com.au>Duncan </a> or 
+
+
+
+<a href="https://twitter.com/intent/tweet?screen_name=AcuteDev" class="twitter-mention-button" data-related="AcuteDev">Tweet to @AcuteDev</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+<BR>
+
+
+
+
+<H3>Sources & External References</H3>
+PHP reference information from <a href="http://www.php.net">http://www.php.net</a><BR>
+Portions of PHP & JS based on examples at <a href="http://www.w3schools.com/php/">W3Schools.com</a><BR>
+Source code formatted by <a href="http://hilite.me/">http://hilite.me/ </a><BR>
+
+
+Other code and content and commentary prepared by <a href=http://www.acutesoftware.com.au>Acute Software</a><BR>
+
+
+</div>
+
+
+
+<BR>
+
+
+
+
+</div>
+<div id="footer">
+
+(C) Acute Software 2012 - <a href=http://www.acutesoftware.com.au>http://www.acutesoftware.com.au</a><BR>
+</div>
+
+</body>
+</html>

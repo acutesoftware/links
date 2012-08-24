@@ -1,0 +1,19 @@
+Links 	written by Duncan Murray  djmurray@acutesoftware.com.au
+Aug 2012
+an example page using PHP, AJAX, CSS and HTML
+
+
+
+This is version 0.1 of a simple application to demonstrate how to use various elements in a web application. It shows how to:
+
+
+
+
+
+use Ajax in a text prompt to avoid needing a submit button on a form
+use PHP to access source files (txt) on the server
+use CSS to have a responsive design so it can be viewed on a desktop or smartphone
+
+You can see the application at 
+
+http://www.cloudeddesigns.com/demo/links/links.html
